@@ -1,6 +1,6 @@
 {
   "name": "csluni",
-  "version": "1.0.3",
+  "version": "1.1.0-beta.0",
   "description": "say Hello World",
   "main": "index.js",
   "scripts": {
