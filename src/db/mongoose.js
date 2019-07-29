@@ -8,7 +8,7 @@ mongoose.connect(
   connectionURL,
   {
     useNewUrlParser: true,
-    useCreateIndex: true,
+    useCreateIndex: true
   },
   err => {
     if (err) {
@@ -18,19 +18,44 @@ mongoose.connect(
     }
   }
 );
-
-const User = mongoose.model('User', {
-  email: {
-    type: String,
-    required: true,
+// https://blog.cloudboost.io/everything-you-need-to-know-about-mongoose-63fcf8564d52
+const Hero = mongoose.model('Hero', {
+  url: {
+    type: String
   },
-  password: {
-    type: String,
-    required: true,
+  name: {
+    type: String
   },
+  gender: {
+    type: String
+  },
+  culture: {
+    type: String
+  },
+  born: {
+    type: String
+  },
+  died: {
+    type: Boolean
+  },
+  aliases: {
+    type: Array,
+    required: false
+  },
+  playedBy: {
+    type: String,
+    required: true
+  },
+  tvSeries: {
+    type: String,
+    required: true
+  }
 });
 
-const myUser = new User({ email: 'myUser@eisson.pe', password: 'I<3Cats!' });
+const myUser = new User({
+  email: '28juliomyUser@eisson.pe',
+  password: 'I<3Cats!'
+});
 
 myUser
   .save()

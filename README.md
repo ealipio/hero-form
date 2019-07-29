@@ -2,10 +2,13 @@
 this program allow us to consume a mongoDB to set and get some parameters in the form.
 this application is still under development 
 
+I'm using an [anAPIofIceAndFire](https://www.anapioficeandfire.com/api/characters) to fullfill all the information and save it later in a mongoDB also I store the data and a way to test your API using VSCode API Rest extention so take a look to that folder in order to understand the schema of the data that we are managing and use it when  you define your schema with mongoose.
+
 ### instructions:
-1. clone the repo in your local environment
-2. create an mlab account and set a document for your information
-3. set the connection details in the .env file:
+* clone the repo in your local environment
+* install the depedencies 
+* create an mlab account and set a document for your information
+* set the connection details in the .env file:
 ```bash
 CONNECTION_URL=mongodb://yourUser:yourPassword@xxx666.mlab.com:19406/yourDatabase
 ```

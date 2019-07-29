@@ -1,11 +1,13 @@
-var express = require('express');
+const express = require('express');
 
-var app = express();
+const app = express();
+
+const port = 3600;
 
 app.get('/', function(req, res) {
   res.send('Hello Peru!');
 });
 
-app.listen(8080, function() {
-  console.log('listening on port 8080!');
+app.listen(port, () => {
+  console.log(`Listening connections by ${port}`);
 });
