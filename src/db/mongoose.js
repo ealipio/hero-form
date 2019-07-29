@@ -19,45 +19,45 @@ mongoose.connect(
   }
 );
 // https://blog.cloudboost.io/everything-you-need-to-know-about-mongoose-63fcf8564d52
-const Hero = mongoose.model('Hero', {
-  url: {
-    type: String
-  },
-  name: {
-    type: String
-  },
-  gender: {
-    type: String
-  },
-  culture: {
-    type: String
-  },
-  born: {
-    type: String
-  },
-  died: {
-    type: Boolean
-  },
-  aliases: {
-    type: Array,
-    required: false
-  },
-  playedBy: {
-    type: String,
-    required: true
-  },
-  tvSeries: {
-    type: String,
-    required: true
-  }
+const Characters = mongoose.model('Characters', {
+  url: { type: String },
+  name: { type: String },
+  gender: { type: String },
+  culture: { type: String },
+  born: { type: String },
+  died: { type: String },
+  titles: { type: Array },
+  aliases: { type: Array },
+  father: { type: String },
+  mother: { type: String },
+  spouse: { type: String },
+  allegiances: { type: Array },
+  books: { type: Array },
+  povBooks: { type: Array },
+  tvSeries: {type: Array},
+  playedBy: {type: Array},
 });
 
-const myUser = new User({
-  email: '28juliomyUser@eisson.pe',
-  password: 'I<3Cats!'
+const character = new Characters({
+  url: 'https://www.anapioficeandfire.com/api/characters/1',
+  name: 'la gringa de la academy',
+  gender: 'Female',
+  culture: 'Braavosi',
+  born: '',
+  died: '',
+  titles: [''],
+  aliases: ['The Daughter of the Dusk'],
+  father: '',
+  mother: '',
+  spouse: '',
+  allegiances: [],
+  books: ['https://www.anapioficeandfire.com/api/books/5'],
+  povBooks: [],
+  tvSeries: [''],
+  playedBy: ['']
 });
 
-myUser
+character
   .save()
-  .then(myUser => console.log('its all good'))
-  .catch(err => console.log(err));
+  .then(console.log)
+  .catch(console.log);
