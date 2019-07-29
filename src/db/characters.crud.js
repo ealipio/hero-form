@@ -31,5 +31,15 @@ async function saveCharacter() {
   console.log(result);
 }
 
+async function findCharacters() {
+  const result = await Characters.find({
+    url: 'https://www.anapioficeandfire.com/api/characters/10'
+  })
+  .select({name: 1, gender: 1, culture: 1})
+  .sort({name: 1})
+  .limit(10);
+  console.log(result);
+}
 
-saveCharacter()
+
+findCharacters();
