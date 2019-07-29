@@ -12,6 +12,11 @@ I'm using an [anAPIofIceAndFire](https://www.anapioficeandfire.com/api/character
 ```bash
 CONNECTION_URL=mongodb://yourUser:yourPassword@xxx666.mlab.com:19406/yourDatabase
 ```
+### client side:
+we are going to use react for the ui side, first we are going to need a proper package to create the project, the best is create-react-app:
+
+* npx create-react-app client  (you do not need to run this step again)
+
 
 I'll including changes to have all in a container even the database 
 and be independent of mlab,
