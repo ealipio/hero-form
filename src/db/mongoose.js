@@ -26,7 +26,10 @@ const Characters = mongoose.model('Characters', charactersSchema.characters);
 
 const character = new Characters(characterSample.data);
 
-character
-  .save()
-  .then(console.log)
-  .catch(console.log);
+async function saveCharacter() {
+  const result = await character.save();
+  console.log(result);
+}
+
+
+saveCharacter()
