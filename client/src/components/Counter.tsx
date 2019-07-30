@@ -2,20 +2,23 @@ import * as React from 'react';
 import { Component } from 'react';
 
 export interface CounterProps {
-    
 }
- 
+
 export interface CounterState {
-    
+    counter: number
 }
- 
+
 class Counter extends React.Component<CounterProps, CounterState> {
-    render() { 
+    constructor(props: CounterProps) {
+        super(props);
+        this.state = { counter: 10 };
+    }
+    render() {
         return <React.Fragment>
-            <h3>Hello World</h3>
-            <button>Increment</button>
-        </React.Fragment> ;
+            <span> {this.state.counter} </span>
+            <button className="btn btn-secondary">Increment</button>
+        </React.Fragment>;
     }
 }
- 
+
 export default Counter;
