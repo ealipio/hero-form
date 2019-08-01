@@ -26,6 +26,13 @@ class Counter extends React.Component<CounterProps, CounterState> {
       ]
     };
   }
+  clickHandler() {
+    return (event: React.MouseEvent) => {
+      console.log(event);
+      event.preventDefault();
+    };
+  }
+
   renderTags() {
     if (this.state.tags.length === 0) {
       return <p>There are no tags!</p>;
@@ -47,7 +54,9 @@ class Counter extends React.Component<CounterProps, CounterState> {
           alt="random"
         />
         <span> {this.state.counter} </span>
-        <button className="btn btn-secondary">Increment</button>
+        <button onClick={this.clickHandler()} className="btn btn-secondary">
+          Increment
+        </button>
         {this.renderTags()}
       </React.Fragment>
     );
