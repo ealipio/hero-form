@@ -14,8 +14,8 @@ class Movie extends React.Component<MovieProps, MovieState> {
   state = { movies: myMovies };
 
   deleteItem = (movie: IMovie) => {
-    const filteredMovies = this.state.movies.filter(m => m._id !== movie._id);
-    this.setState({ movies: filteredMovies });
+    const movies = this.state.movies.filter(m => m._id !== movie._id);
+    this.setState({ movies });
   };
 
   renderBody() {
