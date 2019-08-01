@@ -14,27 +14,43 @@ class Counter extends React.Component<CounterProps, CounterState> {
     this.state = {
       counter: 0,
       imageUrl: 'https://picsum.photos/150',
-      tags: ['angular', 'python', 'golang', 'javascript', 'vue', 'react', 'lambda functions', 'API Gateways']
+      tags: [
+        'angular',
+        'python',
+        'golang',
+        'javascript',
+        'vue',
+        'react',
+        'lambda functions',
+        'API Gateways'
+      ]
     };
+  }
+  renderTags() {
+    if (this.state.tags.length === 0) {
+      return <p>There are no tags!</p>;
+    }
+    return (
+      <ul>
+        {this.state.tags.map(tag => (
+          <li key={tag}> {tag} </li>
+        ))}
+      </ul>
+    );
   }
   render() {
     return (
       <React.Fragment>
-        <img src={this.state.imageUrl} style={{ borderRadius: '50%' }} alt="random"/>
-        <span> {this.formatCounter()} </span>
+        <img
+          src={this.state.imageUrl}
+          style={{ borderRadius: '50%' }}
+          alt="random"
+        />
+        <span> {this.state.counter} </span>
         <button className="btn btn-secondary">Increment</button>
-        <ul>
-            {
-                this.state.tags.map(tag => <li key={tag}> {tag} </li> )
-            }
-        </ul>
+        {this.renderTags()}
       </React.Fragment>
     );
-  }
-
-  formatCounter() {
-    const { counter } = this.state;
-    return counter === 0 ? <h2>Zero</h2> : counter;
   }
 }
 
