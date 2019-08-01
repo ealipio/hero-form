@@ -25,10 +25,9 @@ class Counter extends React.Component<CounterProps, CounterState> {
         'API Gateways'
       ]
     };
-    // bindings
-    this.clickHandler = this.clickHandler.bind(this);
+
   }
-  clickHandler() {
+  clickHandler = () => {
     console.log('clickHandler', this);
     return (event: React.MouseEvent) => {
       console.log(event);
