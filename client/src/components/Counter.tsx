@@ -25,8 +25,11 @@ class Counter extends React.Component<CounterProps, CounterState> {
         'API Gateways'
       ]
     };
+    // bindings
+    this.clickHandler = this.clickHandler.bind(this);
   }
   clickHandler() {
+    console.log('clickHandler', this);
     return (event: React.MouseEvent) => {
       console.log(event);
       event.preventDefault();
@@ -54,7 +57,7 @@ class Counter extends React.Component<CounterProps, CounterState> {
           alt="random"
         />
         <span> {this.state.counter} </span>
-        <button onClick={this.clickHandler()} className="btn btn-secondary">
+        <button onClick={this.clickHandler} className="btn btn-secondary">
           Increment
         </button>
         {this.renderTags()}
