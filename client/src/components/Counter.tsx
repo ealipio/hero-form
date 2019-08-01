@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 export interface CounterProps {}
 
@@ -13,7 +15,7 @@ class Counter extends React.Component<CounterProps, CounterState> {
     super(props);
     this.state = {
       counter: 0,
-      imageUrl: 'https://picsum.photos/150',
+      imageUrl: 'https://picsum.photos/100',
       tags: [
         'angular',
         'python',
@@ -25,15 +27,11 @@ class Counter extends React.Component<CounterProps, CounterState> {
         'API Gateways'
       ]
     };
-
   }
-  clickHandler = () => {
+  clickHandler = (event: React.MouseEvent) => {
     console.log('clickHandler', this);
-    return (event: React.MouseEvent) => {
-      console.log(event);
-      event.preventDefault();
-    };
-  }
+    this.setState({ counter: this.state.counter + 1 });
+  };
 
   renderTags() {
     if (this.state.tags.length === 0) {
@@ -42,7 +40,11 @@ class Counter extends React.Component<CounterProps, CounterState> {
     return (
       <ul>
         {this.state.tags.map(tag => (
-          <li key={tag}> {tag} </li>
+          <li key={tag}>
+            {' '}
+            <FontAwesomeIcon icon={faCoffee} pull='left' />
+            {tag}{' '}
+          </li>
         ))}
       </ul>
     );
@@ -55,11 +57,14 @@ class Counter extends React.Component<CounterProps, CounterState> {
           style={{ borderRadius: '50%' }}
           alt="random"
         />
-        <span> {this.state.counter} </span>
-        <button onClick={this.clickHandler} className="btn btn-secondary">
-          Increment
-        </button>
+        <div>
+          <span> {this.state.counter} </span>
+          <button onClick={this.clickHandler} className="btn btn-secondary">
+            Increment
+          </button>
+        </div>
         {this.renderTags()}
+        <span className="fas fa-user-ninja" />
       </React.Fragment>
     );
   }
