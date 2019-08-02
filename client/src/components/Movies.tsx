@@ -39,11 +39,17 @@ class Movie extends React.Component<MovieProps, MovieState> {
     );
   }
   render() {
-    return (
-      <table className="table">
-        <TableHead />
-        {this.renderBody()}
-      </table>
+    const {length: count} = this.state.movies;
+    return count === 0 ? (
+      <p className="alert alert-info"> no movies in the database.</p>
+    ) : (
+      <React.Fragment>
+        <p> showing {count}</p>
+        <table className="table">
+          <TableHead />
+          {this.renderBody()}
+        </table>
+      </React.Fragment>
     );
   }
 }
