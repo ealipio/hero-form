@@ -1,36 +1,37 @@
 import * as React from 'react';
 
-export interface CounterProps {
-  value: string;
+interface ICounter {
   id: number;
-  onDelete: (event: React.MouseEvent) => void;
+  value: string;
+}
+
+export interface CounterProps {
+  counter: ICounter;
+  onDelete: (counterID: number) => void;
+  onReverse: (value: ICounter) => void;
 }
 
 export interface CounterState {
-  value: number;
+  value: string;
 }
 
 class Counter extends React.Component<CounterProps, CounterState> {
-  constructor(props: CounterProps) {
-    super(props);
-    this.state = {
-      value: 0
-    };
-  }
-  handleIncrement = () => {};
+
   handleDelete = () => {};
   render() {
     return (
       <div>
-        <span className={this.getBadgeClassName()}>{this.formatCount()}</span>
+        <span className={this.getBadgeClassName()}>
+          {this.formatCount()}
+        </span>
         <button
-          onClick={this.handleIncrement}
+          onClick={() => this.props.onReverse(this.props.counter)}
           className="btn btn-info btn-sm"
         >
-          Increment
+          Reverse
         </button>
         <button
-          onClick={this.props.onDelete}
+          onClick={() => this.props.onDelete(this.props.counter.id)}
           className="btn btn-danger btn-sm ml-2"
         >
           Delete
@@ -39,12 +40,10 @@ class Counter extends React.Component<CounterProps, CounterState> {
     );
   }
   formatCount() {
-    return 'zero';
+    return this.props.counter.value;
   }
   getBadgeClassName() {
-    let classes = 'badge m-2 badge-';
-    classes += this.state.value === 0 ? 'warning' : 'primary';
-    return classes;
+    return 'badge m-2 badge-warning';
   }
 }
 

@@ -29,18 +29,48 @@ class Counters extends React.Component<CountersProps, CountersState> {
     };
   }
 
-  handleDelete = (event: React.MouseEvent) => {
-    console.log('Event Handler');
+  handleDelete = (counterID: number) => {
+    const counters = this.state.counters.filter(c => c.id !== counterID);
+    this.setState({ counters });
+  };
+  handleReverse = (counter: ICounter) => {
+    const counters = [ ...this.state.counters ];
+    const reverse = counter.value
+      .split('')
+      .reverse()
+      .join('');
+    const newCounters = counters.map(c => {
+      if (c.id === counter.id) {
+        c.value = reverse;
+      }
+      return c;
+    });
+    console.log({counters, newCounters});
+    this.setState({ counters: newCounters });
+  };
+
+  handleReset = () => {
+    const counters = this.state.counters.map((c: ICounter) => {
+      c.value = '';
+      return c;
+    });
+    this.setState({ counters });
   };
   render() {
     return (
       <React.Fragment>
+        <button
+          className="btn btn-primary btn-sm m-2"
+          onClick={this.handleReset}
+        >
+          Reset
+        </button>
         {this.state.counters.map(counter => (
           <Counter
             key={counter.id}
-            value={counter.value}
-            id={counter.id}
             onDelete={this.handleDelete}
+            onReverse={this.handleReverse}
+            counter={counter}
           />
         ))}
       </React.Fragment>
