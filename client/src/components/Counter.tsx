@@ -16,13 +16,12 @@ export interface CounterState {
 }
 
 class Counter extends React.Component<CounterProps, CounterState> {
-
   handleDelete = () => {};
   render() {
     return (
       <div>
-        <span className={this.getBadgeClassName()}>
-          {this.formatCount()}
+        <span className="badge m-2 badge-warning">
+          {this.props.counter.value}
         </span>
         <button
           onClick={() => this.props.onReverse(this.props.counter)}
@@ -38,12 +37,6 @@ class Counter extends React.Component<CounterProps, CounterState> {
         </button>
       </div>
     );
-  }
-  formatCount() {
-    return this.props.counter.value;
-  }
-  getBadgeClassName() {
-    return 'badge m-2 badge-warning';
   }
 }
 
