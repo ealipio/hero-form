@@ -1,72 +1,50 @@
 import * as React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
-export interface CounterProps {}
+export interface CounterProps {
+  value: string;
+  id: number;
+  onDelete: (event: React.MouseEvent) => void;
+}
 
 export interface CounterState {
-  counter: number;
-  imageUrl: string;
-  tags: string[];
+  value: number;
 }
 
 class Counter extends React.Component<CounterProps, CounterState> {
   constructor(props: CounterProps) {
     super(props);
     this.state = {
-      counter: 0,
-      imageUrl: 'https://picsum.photos/100',
-      tags: [
-        'angular',
-        'python',
-        'golang',
-        'javascript',
-        'vue',
-        'react',
-        'lambda functions',
-        'API Gateways'
-      ]
+      value: 0
     };
   }
-  clickHandler = (event: React.MouseEvent) => {
-    console.log('clickHandler', this);
-    this.setState({ counter: this.state.counter + 1 });
-  };
-
-  renderTags() {
-    if (this.state.tags.length === 0) {
-      return <p>There are no tags!</p>;
-    }
-    return (
-      <ul>
-        {this.state.tags.map(tag => (
-          <li key={tag}>
-            {' '}
-            <FontAwesomeIcon icon={faCoffee} pull='left' />
-            {tag}{' '}
-          </li>
-        ))}
-      </ul>
-    );
-  }
+  handleIncrement = () => {};
+  handleDelete = () => {};
   render() {
     return (
-      <React.Fragment>
-        <img
-          src={this.state.imageUrl}
-          style={{ borderRadius: '50%' }}
-          alt="random"
-        />
-        <div>
-          <span> {this.state.counter} </span>
-          <button onClick={this.clickHandler} className="btn btn-secondary">
-            Increment
-          </button>
-        </div>
-        {this.renderTags()}
-        <span className="fas fa-user-ninja" />
-      </React.Fragment>
+      <div>
+        <span className={this.getBadgeClassName()}>{this.formatCount()}</span>
+        <button
+          onClick={this.handleIncrement}
+          className="btn btn-info btn-sm"
+        >
+          Increment
+        </button>
+        <button
+          onClick={this.props.onDelete}
+          className="btn btn-danger btn-sm ml-2"
+        >
+          Delete
+        </button>
+      </div>
     );
+  }
+  formatCount() {
+    return 'zero';
+  }
+  getBadgeClassName() {
+    let classes = 'badge m-2 badge-';
+    classes += this.state.value === 0 ? 'warning' : 'primary';
+    return classes;
   }
 }
 
