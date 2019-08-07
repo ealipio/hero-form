@@ -13,6 +13,17 @@ export interface AppProps {}
 export interface AppState {}
 
 class App extends React.Component<AppProps, AppState> {
+  constructor(props: AppProps) {
+    super(props);
+    console.log('App -- constructor');
+  }
+  componentDidMount() {
+    console.log('componentDidMount');
+  }
+  shouldComponentUpdate(nextProps: AppProps, nextState: AppState) {
+    console.log('shouldComponentUpdate');
+    return true;
+  }
   state = {
     counters: [
       { id: 0, value: 'angular' },
@@ -43,6 +54,17 @@ class App extends React.Component<AppProps, AppState> {
     });
     this.setState({ counters: newCounters });
   };
+  handleUpper = (counter: ICounter) => {
+        const counters = [...this.state.counters];
+        const upper = counter.value.toUpperCase();
+        const newCounters = counters.map(c => {
+          if (c.id === counter.id) {
+            c.value = upper;
+          }
+          return c;
+        });
+        this.setState({ counters: newCounters });
+  };
   handleReset = () => {
     const counters = this.state.counters.map((c: ICounter) => {
       c.value = '';
@@ -51,14 +73,16 @@ class App extends React.Component<AppProps, AppState> {
     this.setState({ counters });
   };
   render() {
+    console.log('App render');
     return (
       <React.Fragment>
-        <NavBar counters={this.state.counters}  />
-        <div className="container">
+        <NavBar counters={this.state.counters} />
+        <div className="container text-center">
           <Counters
             counters={this.state.counters}
             onReset={this.handleReset}
             onReverse={this.handleReverse}
+            onUpper={this.handleUpper}
             onDelete={this.handleDelete}
           />
         </div>

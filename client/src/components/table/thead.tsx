@@ -13,6 +13,7 @@ class TableHead extends React.Component<TableHeadProps, TableHeadState> {
           <th>Genre</th>
           <th>Stock</th>
           <th>Rate</th>
+          <th></th>
           <th>Action</th>
         </tr>
       </thead>

@@ -10,6 +10,7 @@ export interface CountersProps {
   counters: ICounter[];
   onReset: () => void;
   onReverse: (counter: ICounter) => void;
+  onUpper: (counter: ICounter) => void;
   onDelete: (counterID: number) => void;
 }
 
@@ -18,21 +19,23 @@ export interface CountersState {
 }
 
 class Counters extends React.Component<CountersProps, CountersState> {
-
   render() {
+    console.log('Counters rendered');
+    const { onDelete, onReverse, onReset, onUpper, counters } = this.props;
     return (
       <React.Fragment>
         <button
-          className="btn btn-primary btn-sm m-2"
-          onClick={this.props.onReset}
+          className="btn btn-primary btn-sm btn-block m-2"
+          onClick={onReset}
         >
           Reset
         </button>
-        {this.props.counters.map(counter => (
+        {counters.map(counter => (
           <Counter
             key={counter.id}
-            onDelete={this.props.onDelete}
-            onReverse={this.props.onReverse}
+            onDelete={onDelete}
+            onReverse={onReverse}
+            onUpper={onUpper}
             counter={counter}
           />
         ))}
