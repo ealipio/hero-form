@@ -30,7 +30,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged",
+      "pre-commit": "npm run format && pretty-quick --staged",
       "commit-msg": "commitlint -e $GIT_PARAMS"
     }
   },
