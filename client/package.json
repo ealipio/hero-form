@@ -31,7 +31,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged",
-      "commitmsg": "commitlint -e $GIT_PARAMS"
+      "commit-msg": "commitlint -e $GIT_PARAMS"
     }
   },
   "eslintConfig": {
