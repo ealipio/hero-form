@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { IGenre } from '../../interfaces';
+import * as React from "react";
+import { IGenre } from "../../interfaces";
 
 export interface ListGroupProps {
   items: IGenre[];
@@ -23,14 +23,13 @@ class ListGroup extends React.Component<ListGroupProps, ListGroupState> {
 
     return (
       <ul className="list-group">
-        <li className="list-group-item">All Genres</li>
         {items.map((i: any) => (
           <li
             key={i[valueProperty]}
             className={
               i._id === selectedGenre._id
-                ? 'list-group-item active'
-                : 'list-group-item'
+                ? "list-group-item active"
+                : "list-group-item"
             }
             onClick={() => onItemSelect(i)}
           >
