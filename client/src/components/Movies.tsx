@@ -41,15 +41,7 @@ class Movie extends React.Component<MovieProps, MovieState> {
   handlePageChange = (page: number) => {
     this.setState({ currentPage: page });
   };
-  handleSort = (path: string) => {
-    const sortColumn = { ...this.state.sortColumn };
-    if (sortColumn.path === path) {
-      sortColumn.order =
-        sortColumn.order === orderType.ASC ? orderType.DESC : orderType.ASC;
-    } else {
-      sortColumn.path = path;
-      sortColumn.order = orderType.ASC;
-    }
+  handleSort = (sortColumn: ISortColumn) => {
     this.setState({ sortColumn });
   };
   deleteItem = (movie: IMovie) => {
@@ -95,6 +87,7 @@ class Movie extends React.Component<MovieProps, MovieState> {
             <div className="col-10">
               <MoviesTable
                 movies={movies}
+                sortColumn={sortColumn}
                 onSort={this.handleSort}
                 onDelete={this.deleteItem}
               />
