@@ -1,8 +1,7 @@
 import * as React from "react";
 
-import ButtonAction from "../ButtonAction";
-import TableHead from "./thead";
-import Like from "../common/Like";
+import TableHead from "./tableHeader";
+import TableBody from "./tableBody";
 import { IMovie, ISortColumn } from "../../interfaces";
 
 export interface MoviesTableProps {
@@ -28,25 +27,7 @@ class MoviesTable extends React.Component<MoviesTableProps, MoviesTableState> {
     return (
       <table className="table">
         <TableHead columns={columns} sortColumn={sortColumn} onSort={onSort} />
-        <tbody>
-          {movies.map((movie: IMovie) => (
-            <tr key={movie._id}>
-              <td>{movie.title}</td>
-              <td>{movie.genre ? movie.genre.name : ""}</td>
-              <td>{movie.numberInStock}</td>
-              <td>{movie.dailyRentalRate}</td>
-              <td>
-                <Like />
-              </td>
-              <td>
-                <ButtonAction
-                  idItem={movie._id ? movie._id : ""}
-                  onHeaderClick={() => onDelete(movie)}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        <TableBody movies={movies} onDelete={onDelete} />
       </table>
     );
   }
