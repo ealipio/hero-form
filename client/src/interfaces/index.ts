@@ -3,6 +3,14 @@ export interface genre {
   name: string;
 }
 
+export enum orderType {
+  ASC = "asc",
+  DESC = "desc",
+}
+export interface ISortColumn {
+  path: string;
+  order: orderType;
+}
 export interface IMovie {
   _id?: string;
   title?: string;
