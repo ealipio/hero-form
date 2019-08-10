@@ -1,9 +1,9 @@
 import * as React from "react";
 
 import ButtonAction from "../ButtonAction";
-// import TableHead from "./thead";
+import TableHead from "./thead";
 import Like from "../common/Like";
-import { IMovie, orderType, ISortColumn } from "../../interfaces";
+import { IMovie, ISortColumn } from "../../interfaces";
 
 export interface MoviesTableProps {
   movies: IMovie[];
@@ -15,33 +15,19 @@ export interface MoviesTableProps {
 export interface MoviesTableState {}
 
 class MoviesTable extends React.Component<MoviesTableProps, MoviesTableState> {
-  raiseSort = (path: string) => {
-    const sortColumn = { ...this.props.sortColumn };
-    if (sortColumn.path === path) {
-      sortColumn.order =
-        sortColumn.order === orderType.ASC ? orderType.DESC : orderType.ASC;
-    } else {
-      sortColumn.path = path;
-      sortColumn.order = orderType.ASC;
-    }
-    this.props.onSort(sortColumn);
-  };
-
   render() {
-    const { movies, onDelete } = this.props;
+    const { movies, onDelete, sortColumn, onSort } = this.props;
+    const columns = [
+      { label: "Title", key: "title" },
+      { label: "Genre", key: "genre.name" },
+      { label: "Stock", key: "numberInStock" },
+      { label: "Rate", key: "dailyRentalRate" },
+      { label: "", key: "" },
+      { label: "Action", key: "action" },
+    ];
     return (
       <table className="table">
-        <thead>
-          <tr>
-            <th onClick={() => this.raiseSort("title")}>Title</th>
-            <th onClick={() => this.raiseSort("genre.name")}>Genre</th>
-            <th onClick={() => this.raiseSort("numberInStock")}>Stock</th>
-            <th onClick={() => this.raiseSort("dailyRentalRate")}>Rate</th>
-            <th></th>
-
-            <th>Action</th>
-          </tr>
-        </thead>
+        <TableHead columns={columns} sortColumn={sortColumn} onSort={onSort} />
         <tbody>
           {movies.map((movie: IMovie) => (
             <tr key={movie._id}>

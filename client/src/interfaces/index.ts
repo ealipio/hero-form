@@ -24,3 +24,8 @@ export interface IGenre {
   _id: string;
   name: string;
 }
+
+export interface IColumns {
+  label: string;
+  key: string;
+}

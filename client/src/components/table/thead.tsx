@@ -1,20 +1,35 @@
-import * as React from 'react';
+import * as React from "react";
+import { IColumns, orderType, ISortColumn } from "../../interfaces";
 
-export interface TableHeadProps {}
+export interface TableHeadProps {
+  columns: IColumns[];
+  onSort: (sortColumn: ISortColumn) => void;
+  sortColumn: ISortColumn;
+}
 
 export interface TableHeadState {}
 
 class TableHead extends React.Component<TableHeadProps, TableHeadState> {
+  raiseSort = (path: string) => {
+    const sortColumn = { ...this.props.sortColumn };
+    if (sortColumn.path === path) {
+      sortColumn.order =
+        sortColumn.order === orderType.ASC ? orderType.DESC : orderType.ASC;
+    } else {
+      sortColumn.path = path;
+      sortColumn.order = orderType.ASC;
+    }
+    this.props.onSort(sortColumn);
+  };
   render() {
     return (
       <thead>
         <tr>
-          <th>Title</th>
-          <th>Genre</th>
-          <th>Stock</th>
-          <th>Rate</th>
-          <th></th>
-          <th>Action</th>
+          {this.props.columns.map(column => (
+            <th key={column.key} onClick={() => this.raiseSort(column.key)}>
+              {column.label}
+            </th>
+          ))}
         </tr>
       </thead>
     );
