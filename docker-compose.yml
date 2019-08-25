@@ -1,7 +1,7 @@
 version: "3"
 services:
   app:
-    image: eisson/hero-form:1.0.4
+    image: eisson/nodejs-mongoose
     env_file:
       - .env
     ports:
