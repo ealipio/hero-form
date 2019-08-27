@@ -17,7 +17,9 @@ CONNECTION_URL=mongodb://yourUser:yourPassword@xxx666.mlab.com:19406/yourDatabas
 ```
 
 - docker build -t eisson/nodejs-mongoose:1.0.5 .
+- docker run -d -p 80:3000 eisson/nodejs-mongoose:1.0.5
 - docker-compose up
+- docker-compose rm -f (if you want to kill all containers)
 
 ### client side:
 
